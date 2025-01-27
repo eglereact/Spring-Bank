@@ -5,14 +5,17 @@ public class AccountDto {
     private Long id;
     private String accountHolderName;
     private double balance;
+    private String accountNumber;
 
     public AccountDto() {
     }
 
-    public AccountDto(Long id, String accountHolderName, double balance) {
+    public AccountDto(Long id, String accountHolderName, double balance, String accountNumber) {
         this.id = id;
         this.accountHolderName = accountHolderName;
         this.balance = balance;
+        this.accountNumber = accountNumber;
+
     }
 
     public Long getId() {
@@ -37,6 +40,14 @@ public class AccountDto {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }
 

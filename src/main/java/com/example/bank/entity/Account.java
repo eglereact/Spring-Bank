@@ -1,5 +1,6 @@
 package com.example.bank.entity;
 
+import com.example.bank.utils.AccountNumberGenerator;
 import jakarta.persistence.*;
 
 
@@ -13,15 +14,17 @@ public class Account {
     @Column(name = "account_holder_name")
     private String accountHolderName;
     private double balance;
-
+    @Column(name = "account_number", unique = true, nullable = false)
+    private String accountNumber;
 
     public Account() {
     }
 
-    public Account(Long id, String accountHolderName, double balance) {
+    public Account(Long id, String accountHolderName, double balance, String accountNumber) {
         this.id = id;
         this.accountHolderName = accountHolderName;
         this.balance = balance;
+        this.accountNumber = accountNumber != null ? accountNumber : AccountNumberGenerator.generateAccountNumber();
     }
 
     public Long getId() {
@@ -46,5 +49,9 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 }
