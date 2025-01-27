@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accounts</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+<h1>Accounts</h1>
+<a href="/accounts/create" class="create">Create New Account</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Account Holder</th>
+        <th>Balance</th>
+        <th>Account Number</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.accountHolderName}"></td>
+        <td th:text="${account.balance}"></td>
+        <td th:text="${account.accountNumber}"></td>
+        <td>
+
+            <a th:href="@{'/accounts/deposit/' + ${account.id}}">
+                <button>Deposit</button>
+            </a>
+            <a th:href="@{'/accounts/withdraw/' + ${account.id}}">
+                <button>Withdraw</button>
+            </a>
+            <a th:href="@{'/accounts/more/' + ${account.id}}">
+                <button>More</button>
+            </a>
+            <a th:href="@{/accounts/delete/{id}(id=${account.id})}" onclick="return confirm('Are you sure you want to delete this account?');">
+                <button type="button">Delete</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
