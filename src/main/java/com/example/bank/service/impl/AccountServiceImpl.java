@@ -42,6 +42,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto deposit(Long id, double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Deposit amount cannot be negative");
+        }
         Account account = accountRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Account does not exist"));
