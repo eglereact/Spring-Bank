@@ -7,13 +7,9 @@ public class AccountNumberGenerator {
 
     public static String generateAccountNumber() {
         SecureRandom random = new SecureRandom();
-        StringBuilder letters = new StringBuilder("ej"); // Start with "ej"
-        for (int i = 0; i < 4; i++) { // Generate 4 additional random letters
-            letters.append((char) ('a' + random.nextInt(26)));
-        }
-        String numbers = String.format("%012d", random.nextLong(1_000_000_000_000L));
-        return letters + "_" + numbers;
+        String prefix = "JUKEGL"; // Use "JUKEGL" as the prefix
+        String numbers = String.format("%012x", random.nextLong(1_000_000_000_000L)); // Generate a 12-character hexadecimal number
+        return prefix + "_" + numbers; // Combine the prefix and the number
     }
-
 
 }
