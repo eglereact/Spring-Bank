@@ -1,6 +1,7 @@
 package com.example.bank.controler;
 
 import com.example.bank.dto.AccountDto;
+import com.example.bank.dto.TransferRequestDto;
 import com.example.bank.service.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountDto> addAccount(AccountDto accountDto) {
+    public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto) {
         return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
@@ -54,5 +55,11 @@ public class AccountController {
     public ResponseEntity<String> deleteAccount(@PathVariable Long id){
         accountService.deleteAccount(id);
         return ResponseEntity.ok("Account is deleted successfully.");
+    }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<String> transfer(@RequestBody TransferRequestDto transferRequestDto) {
+        accountService.transferAmount(transferRequestDto);
+        return ResponseEntity.ok("Transfer successful");
     }
 }
