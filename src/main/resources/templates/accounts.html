@@ -57,6 +57,22 @@
                     </div>
                 </div>
             </form>
+            <!-- Transfer Form -->
+            <form th:action="@{/transfer}" method="post">
+                <h3>Transfer Money</h3>
+                <input type="hidden" name="fromAccountId" th:value="${account.accountNumber}" /> <!-- Sender account number -->
+                <div>
+                    <label for="toAccountId">Recipient Account Number:</label>
+                    <input type="text" id="toAccountId" name="toAccountId" placeholder="Enter recipient account number" required />
+                </div>
+                <div>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0.01" required />
+                </div>
+                <div>
+                    <button type="submit">Transfer</button>
+                </div>
+            </form>
             <a th:href="@{/accounts/delete/{id}(id=${account.id})}" onclick="return confirm('Are you sure you want to delete this account?');">
                 <button type="button">Delete</button>
             </a>

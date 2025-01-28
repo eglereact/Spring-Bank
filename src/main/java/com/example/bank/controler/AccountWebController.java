@@ -1,6 +1,7 @@
 package com.example.bank.controler;
 
 import com.example.bank.dto.AccountDto;
+import com.example.bank.dto.TransferRequestDto;
 import com.example.bank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,6 +77,35 @@ public class AccountWebController {
         }
 
         // Redirect to the accounts page, passing the message
+        return "redirect:/accounts";
+    }
+
+    @PostMapping("/transfer")
+    public String handleTransfer(@RequestParam("fromAccountId") String fromAccountNumber,
+                                 @RequestParam("toAccountId") String toAccountNumber,
+                                 @RequestParam("amount") double amount,
+                                 Model model) {
+        try {
+            // Create a TransferRequestDto and populate it with the data from the form
+            TransferRequestDto transferRequestDto = new TransferRequestDto();
+            transferRequestDto.setSenderAccountNumber(fromAccountNumber);
+            transferRequestDto.setRecipientAccountNumber(toAccountNumber);
+            transferRequestDto.setAmount(amount);
+
+            // Call the service method to handle the transfer
+            accountService.transferAmount(transferRequestDto);
+
+            // Add a success message to the model
+            model.addAttribute("message", "Transfer successful!");
+        } catch (IllegalArgumentException e) {
+            // Add an error message to the model in case of validation issues
+            model.addAttribute("errorMessage", e.getMessage());
+        } catch (Exception e) {
+            // Handle unexpected exceptions
+            model.addAttribute("errorMessage", "An unexpected error occurred. Please try again.");
+        }
+
+        // Return to the accounts page
         return "redirect:/accounts";
     }
 
