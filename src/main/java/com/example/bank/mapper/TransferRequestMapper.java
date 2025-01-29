@@ -11,6 +11,8 @@ public class TransferRequestMapper {
         transferRequest.setSenderAccountNumber(dto.getSenderAccountNumber());
         transferRequest.setRecipientAccountNumber(dto.getRecipientAccountNumber());
         transferRequest.setAmount(dto.getAmount());
+        transferRequest.setId(dto.getId());
+        transferRequest.setTimestamp(dto.getTimestamp());
         return transferRequest;
     }
 
@@ -20,6 +22,8 @@ public class TransferRequestMapper {
         dto.setSenderAccountNumber(transferRequest.getSenderAccountNumber());
         dto.setRecipientAccountNumber(transferRequest.getRecipientAccountNumber());
         dto.setAmount(transferRequest.getAmount());
+        dto.setId(transferRequest.getId());
+        dto.setTimestamp(transferRequest.getTimestamp());
         return dto;
     }
 

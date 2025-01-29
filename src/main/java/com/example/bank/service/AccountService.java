@@ -14,4 +14,5 @@ public interface AccountService {
     List<AccountDto> getAllAccounts();
     void deleteAccount(Long id);
     public void transferAmount(TransferRequestDto transferRequestDto);
+    List<TransferRequestDto> getAllTransfers();
 }

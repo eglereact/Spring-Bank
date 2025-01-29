@@ -109,4 +109,11 @@ public class AccountWebController {
         return "redirect:/accounts";
     }
 
+    @GetMapping("/accounts/transfers")
+    public String showTransfers(Model model) {
+        List<TransferRequestDto> transfers = accountService.getAllTransfers();
+        model.addAttribute("transfers", transfers);
+        return "transfers";
+    }
+
 }

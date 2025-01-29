@@ -115,4 +115,15 @@ public class AccountServiceImpl implements AccountService {
         TransferRequest transferRequest = TransferRequestMapper.toEntity(transferRequestDto);
         transferRequestRepository.save(transferRequest);
     }
+
+    @Override
+    public List<TransferRequestDto> getAllTransfers() {
+
+
+            List<TransferRequest> transferRequests = transferRequestRepository.findAll();
+            return transferRequests
+                    .stream()
+                    .map(TransferRequestMapper::toDto)
+                    .collect(Collectors.toList());
+    }
 }

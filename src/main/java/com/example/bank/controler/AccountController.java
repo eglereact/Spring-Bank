@@ -62,4 +62,11 @@ public class AccountController {
         accountService.transferAmount(transferRequestDto);
         return ResponseEntity.ok("Transfer successful");
     }
+
+    @GetMapping("/transfers")
+    public ResponseEntity<List<TransferRequestDto>> getAllTransfers(){
+        List<TransferRequestDto> transfers = accountService.getAllTransfers();
+        return ResponseEntity.ok(transfers);
+    }
+
 }
