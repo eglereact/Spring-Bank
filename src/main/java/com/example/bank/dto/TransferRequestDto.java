@@ -9,6 +9,16 @@ public class TransferRequestDto {
     private Double amount;
     private LocalDateTime timestamp;
 
+    public TransferRequestDto() {
+    }
+
+    public TransferRequestDto(String senderAccountNumber, String recipientAccountNumber, Double amount, LocalDateTime timestamp) {
+        this.senderAccountNumber = senderAccountNumber;
+        this.recipientAccountNumber = recipientAccountNumber;
+        this.amount = amount;
+        this.timestamp = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }

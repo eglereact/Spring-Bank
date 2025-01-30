@@ -11,6 +11,7 @@ import com.example.bank.repository.TransferRequestRepository;
 import com.example.bank.service.AccountService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,6 +107,8 @@ public class AccountServiceImpl implements AccountService {
         // Perform the transfer
         sender.setBalance(sender.getBalance() - transferRequestDto.getAmount());
         recipient.setBalance(recipient.getBalance() + transferRequestDto.getAmount());
+
+        transferRequestDto.setTimestamp(LocalDateTime.now());
 
         // Save updated accounts
         accountRepository.save(sender);
